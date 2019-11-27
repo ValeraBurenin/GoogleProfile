@@ -1,0 +1,46 @@
+export default {
+  unit: {
+    half: '4px',
+    single: '8px',
+    double: '16px',
+    quadriple: '32px',
+    eight: '64px',
+  },
+  colors: {
+    background: '#ffffff',
+    backgroundPrimary: '#eacc86',
+    backgroundDark: '#f9f9f9',
+    primary: '#fe2419',
+    primaryDark: '#d4251c',
+    secondary: '#26499d',
+    secondaryLight: 'rgba(38, 73, 157, 0.73)',
+    white: '#fff',
+    font: '#000',
+    fontLighten: '#474747',
+  },
+  fontSizes: {
+    werySmall: '12px',
+    small: '14px',
+    normal: '16px',
+    big: '20px',
+    veryBig: '24px',
+  },
+  padding: {
+    none: 0,
+    verySmall: '10px',
+    small: '14px',
+    normal: '16px',
+    big: '20px',
+    veryBig: '24px',
+  },
+  letterSpacing: {
+    normal: 'normal',
+    caps: '0.25em',
+  },
+  fontWeights: {
+    light: 300,
+    normal: 400,
+    bold: 700,
+  },
+  fontFamily: ['Lato, "Helvetica Neue", Arial'],
+}
