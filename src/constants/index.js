@@ -1,4 +1,4 @@
 export * from './paths'
 export * from './socialButton'
-export * from './user'
+export * from './pictures'
 export * from './layout'

@@ -5,7 +5,7 @@ export default styled.footer`
     margin: ${props => props.theme.padding.none};
     color: ${props => props.theme.colors.font};
     padding: ${props => props.theme.fontSizes.big};
-    font-size: 1.5rem;
+    font-size: ${props => props.theme.fontSizes.veryBig};
     text-align: right;
   }
 `

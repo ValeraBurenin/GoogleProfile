@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
-import { LANDING_PAGE_PATH, indentToTotek } from '@/constants'
+import { LANDING_PAGE_PATH, indentToToken } from '@/constants'
 import { NavLink } from 'react-router-dom'
-import { boolPropType } from '@/prop-types'
+import { PropTypes } from 'prop-types'
 import H3 from './styles'
 
-import Main from '@/components/blocks/inform/Main'
+import StandardLayout from '@/components/layouts'
+import Main from '@/components/blocks/Main'
+import { getLocalStorage, setLocalStorage } from '@/utils'
 
 class Layout extends Component {
   constructor (props) {
@@ -12,12 +14,12 @@ class Layout extends Component {
     this.state = {
       token: document.cookie.includes('token=id')
         ? document.cookie.substring(
-          document.cookie.search('token=id') + indentToTotek,
+          document.cookie.search('token=id') + indentToToken,
           document.cookie.search('tokenend'),
         )
         : '',
-      userContacts: JSON.parse(localStorage.getItem('contacts')) || [],
-      userInfo: JSON.parse(localStorage.getItem('userData')) || [],
+      userContacts: JSON.parse(getLocalStorage('contacts')) || [],
+      userInfo: JSON.parse(getLocalStorage('userData')) || {},
       auth: props.isAuth,
       error: false,
     }
@@ -34,7 +36,7 @@ class Layout extends Component {
       fetch(firstFetch)
         .then(response => response.json())
         .then(response => {
-          localStorage.setItem('userData', JSON.stringify(response))
+          setLocalStorage('userData', JSON.stringify(response))
           this.setState({ userInfo: response })
         })
         .then(() => {
@@ -52,12 +54,12 @@ class Layout extends Component {
         )
         .then(user => user.json())
         .then(user => {
-          console.log(user)
-          user.feed.entry
-            ? localStorage.setItem('contacts', JSON.stringify(user.feed.entry))
-            : this.setState({ userContacts: user.feed.entry })
-
-          this.setState({ userContacts: user.feed.entry })
+          if (user.feed.entry) {
+            this.setState({ userContacts: user.feed.entry })
+            setLocalStorage('contacts', JSON.stringify(user.feed.entry))
+          } else {
+            this.setState({ userContacts: [] })
+          }
         })
         .catch(() => {
           this.setState({ error: true })
@@ -66,23 +68,28 @@ class Layout extends Component {
   }
 
   render () {
+    const { logOut, isAuth } = this.props
     return this.state.auth && !this.state.error ? (
-      <Main
-        userContacts={this.state.userContacts}
-        userName={this.state.userInfo.name}
-        userPicture={this.state.userInfo.picture} />
+      <StandardLayout logOut={logOut} isAuth={isAuth}>
+        <Main
+          contacts={this.state.userContacts}
+          userInfo={this.state.userInfo} />
+      </StandardLayout>
     )
       : (
-        <H3>
-          Ошибка в запросе на получение данных.{' '}
-          <NavLink to={LANDING_PAGE_PATH}>Обновить страницу?</NavLink>
-        </H3>
+        <StandardLayout>
+          <H3>
+          Error in data request{' '}
+            <NavLink to={LANDING_PAGE_PATH}>Update page?</NavLink>
+          </H3>
+        </StandardLayout>
       )
   }
 }
 
 Layout.propTypes = {
-  isAuth: boolPropType,
+  isAuth: PropTypes.bool,
+  logOut: PropTypes.func,
 }
 
 export default Layout

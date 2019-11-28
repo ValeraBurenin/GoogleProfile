@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import { boolPropType, funcPropType } from '@/prop-types'
 import { provider, appId, key, scope } from '@/constants'
 import { Wrapper, H3 } from './styles'
+import { setCookie, setLocalStorage } from '@/utils'
 
+import StandardLayout from '@/components/layouts'
 import SocialButton from './SocialButton'
 
 export default function Login (props) {
@@ -11,46 +12,48 @@ export default function Login (props) {
   const [error, setError] = useState('')
 
   const onLoginSuccess = user => {
-    const { history, changeAuth } = props
-    document.cookie = `token=id${user._token.accessToken}tokenend; max-age=7200`
-    localStorage.setItem('auth', true)
-    changeAuth(true)
+    const { history, logOut } = props
+    setCookie(`token=id${user._token.accessToken}tokenend; max-age=7200`)
+    setLocalStorage('auth', true)
+    logOut(auth)
     history.push('/')
   }
 
   const onLoginFailure = () => {
-    setError('Произошла ошибка на сервере. Пожалуйста, повторите ваш запрос.')
+    setError('An error occurred on the server. Please repeat your request')
   }
 
   return (
-    <Wrapper>
-      {
-        auth
-          ? (<h3>Пожалуйста, выйдите из текущего аккаунта</h3>)
-          : (
-            <SocialButton
-              provider={provider}
-              appId={appId}
-              key={key}
-              scope={scope}
-              onLoginSuccess={onLoginSuccess}
-              onLoginFailure={onLoginFailure}
-            >
-              Авторизоваться
-            </SocialButton>
-          )
-      }
-      {error && (<H3>{error}</H3>)}
-    </Wrapper>
+    <StandardLayout>
+      <Wrapper>
+        {
+          auth
+            ? (<h3>Please log out of your current account.</h3>)
+            : (
+              <SocialButton
+                provider={provider}
+                appId={appId}
+                key={key}
+                scope={scope}
+                onLoginSuccess={onLoginSuccess}
+                onLoginFailure={onLoginFailure}
+              >
+                Sign in
+              </SocialButton>
+            )
+        }
+        {error && (<H3>{error}</H3>)}
+      </Wrapper>
+    </StandardLayout>
   )
 }
 
 Login.propTypes = {
   history: PropTypes.object,
-  changeAuth: funcPropType,
-  isAuth: boolPropType,
+  isAuth: PropTypes.bool,
+  logOut: PropTypes.func,
 }
 
 Login.defaultProps = {
-  changeAuth: function f () {},
+  logOut: function f () {},
 }

@@ -1,11 +1,12 @@
 import React from 'react'
-import Header from '@/components/blocks/global/Header'
-import Footer from '@/components/blocks/global/Footer'
-import { childrenPropType, boolPropType, funcPropType } from '@/prop-types'
+import Header from '@/components/blocks/Header'
+import Footer from '@/components/blocks/Footer'
+import { PropTypes } from 'prop-types'
+import { childrenPropType } from '@/prop-types'
 
-const StandardLayout = ({ children, isAuth, changeAuth }) => (
+const StandardLayout = ({ children, isAuth, logOut }) => (
   <>
-    <Header isAuth={isAuth} changeAuth={changeAuth} />
+    <Header isAuth={isAuth} logOut={logOut} />
     <main>{children}</main>
     <Footer />
   </>
@@ -13,8 +14,8 @@ const StandardLayout = ({ children, isAuth, changeAuth }) => (
 
 StandardLayout.propTypes = {
   children: childrenPropType,
-  isAuth: boolPropType,
-  changeAuth: funcPropType,
+  isAuth: PropTypes.bool,
+  logOut: PropTypes.func,
 }
 
 export default StandardLayout

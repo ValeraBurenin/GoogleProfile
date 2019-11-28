@@ -1,1 +1,3 @@
-export const indentToTotek = 8
+import theme from '@/theme'
+
+export const indentToToken = parseInt(theme.unit.single)

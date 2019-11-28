@@ -9,17 +9,17 @@ export default createGlobalStyle`
     font-weight: ${props => props.theme.fontWeights.normal};
     font-family: ${props => props.theme.fontFamily};
     font-size: ${props => props.theme.fontSizes.normal};
-    margin: 0;
+    margin: ${props => props.theme.margin.none};
   }
 
   #root {
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    height:  ${props => props.theme.width.fullVh};
   }
 
   main {
-    width: 100%;
+    width: ${props => props.theme.width.hundred};;
     display: flex;
     flex-grow: 1;
     position: relative;
@@ -28,7 +28,7 @@ export default createGlobalStyle`
   header {
     background: ${props => props.theme.colors.backgroundPrimary};
     padding: ${props => props.theme.fontSizes.big};
-    width: 100%;
+    width: ${props => props.theme.width.hundred};
     box-sizing: border-box;
     display: flex;
     justify-content: space-between;
@@ -38,15 +38,15 @@ export default createGlobalStyle`
   footer {
     background: ${props => props.theme.colors.backgroundPrimary};
     color: ${props => props.theme.colors.white};
-    width: 100%;
+    width: ${props => props.theme.width.hundred};
   }
 
   h3, p {
-    margin: 0;
-    padding: 0;
+    margin: ${props => props.theme.margin.none};
+    padding: ${props => props.theme.padding.none};
   }
 
-  @media (max-width: 640px){
+  ${props => props.theme.breakPoints.tablet}{
     main {
       flex-direction: column;
     }

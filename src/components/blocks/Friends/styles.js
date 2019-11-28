@@ -2,24 +2,24 @@ import styled from 'styled-components'
 
 export default styled.div`
   padding: ${props => props.theme.padding.big};
-  width: 100%;
+  width: ${props => props.theme.width.hundred};
   box-sizing: border-box;
 
   h3 {
     font-size: ${props => props.theme.fontSizes.veryBig};
-    font-weight: bold;
+    margin: ${props => props.theme.margin.none};
+    font-weight: ${props => props.theme.fontWeights.bold};
     text-align: right;
-    margin: 0;
   }
 
   ul {
-    padding: 0;
+    padding: ${props => props.theme.padding.none};
   }
 
   li {
     font-size: ${props => props.theme.fontSizes.big};
-    border-bottom: 2px solid  #000;
-    padding: 20px 10px 20px;
+    border-bottom: ${props => props.theme.border.bold};
+    padding: ${props => props.theme.padding.big} ${props => props.theme.padding.verySmall};;
     list-style-type: none;
   }
 
@@ -28,7 +28,7 @@ export default styled.div`
     text-decoration: none;
 
     &:hover {
-      opacity: .8;
+      opacity: ${props => props.theme.opacity.almostStandard};
     }
   }
 `

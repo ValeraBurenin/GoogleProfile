@@ -2,21 +2,21 @@ import styled from 'styled-components'
 
 export default styled.header`
   h1{
-    font-size: 2rem;
-    margin: 0;
+    font-size: ${props => props.theme.fontSizes.veryBig};
+    margin: ${props => props.theme.margin.none};
     align-self: center;
   }
 
   Button{
     font-size: ${props => props.theme.fontSizes.big};
     color: ${props => props.theme.colors.font};
-    margin: 0;
-    padding: 0;
+    margin: ${props => props.theme.margin.none};
+    padding: ${props => props.theme.padding.none};
   }
 
   a{
     text-decoration: none;
-    font-weight: bolder;
+    font-weight: ${props => props.theme.fontWeights.bold};
   }
 
   a:visited{
