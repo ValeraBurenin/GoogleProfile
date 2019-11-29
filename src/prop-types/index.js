@@ -4,3 +4,8 @@ export const childrenPropType = pt.oneOfType([
   pt.string.isRequired,
   pt.element.isRequired,
 ])
+
+export const contactsPropType = pt.oneOfType([
+  pt.bool.isRequired,
+  pt.string.isRequired,
+])

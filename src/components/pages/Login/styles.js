@@ -10,8 +10,8 @@ export const Wrapper = styled.div`
 `
 
 export const H3 = styled.h3`
-  position: absolute;
-  bottom: ${props => props.theme.padding.big};
-  left: ${props => props.theme.padding.verySmall};
-  padding: ${props => props.theme.padding.verySmall} ${props => props.theme.padding.big};
+bottom: ${props => props.theme.padding.big};
+left: ${props => props.theme.padding.verySmall};
+padding: ${props => props.theme.padding.verySmall} ${props => props.theme.padding.big};
+position: absolute;
 `

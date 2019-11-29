@@ -1,7 +1,7 @@
-import React from 'react'
-
 export const getList = array => {
-  return array.map(({ id, title, gd$phoneNumber }) => (
-    <li key={id.$t}>{title.$t} <p>{gd$phoneNumber[0].$t}</p></li>
+  const contactsData = array.map(({ id, title, gd$phoneNumber }) => (
+    { id: id.$t, title: title.$t, phone: gd$phoneNumber[0].$t }
   ))
+
+  return Array.from(contactsData)
 }

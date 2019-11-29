@@ -11,7 +11,9 @@ const Friends = ({ contacts }) => (
         <>
           <h3>Your contacts</h3>
           <ul>
-            {getList(contacts)}
+            {getList(contacts).map(friend => (
+              <li key={friend.id}>{friend.title} <p>{friend.phone}</p></li>
+            ))}
           </ul>
         </>
       )}
@@ -19,7 +21,7 @@ const Friends = ({ contacts }) => (
 )
 
 Friends.propTypes = {
-  contacts: PropTypes.array,
+  contacts: PropTypes.arrayOf(PropTypes.object),
 }
 
 export default Friends

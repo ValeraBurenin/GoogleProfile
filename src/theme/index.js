@@ -15,6 +15,7 @@ export default {
     secondary: '#26499d',
     secondaryLight: 'rgba(38, 73, 157, 0.73)',
     white: '#fff',
+    gray: '#EDEEF0',
     font: '#000',
     fontLighten: '#474747',
   },
@@ -25,25 +26,14 @@ export default {
     big: '20px',
     veryBig: '24px',
   },
-  imgSizes: {
-    normal: '100px',
-    big: '200px',
-  },
   border: {
-    standard: '1px solid #000',
-    bold: '3px solid #000',
+    thin: '1px',
+    normal: '2px',
+    bold: '3px',
   },
   width: {
-    fullVh: '100vh',
-    hundred: '100%',
     fifty: '50%',
     twenty: '20%',
-  },
-  opacity: {
-    standard: '1',
-    almostStandard: '.8',
-    halfStandard: '.5',
-    clear: '0',
   },
   padding: {
     none: 0,

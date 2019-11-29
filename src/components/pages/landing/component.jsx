@@ -1,25 +1,20 @@
 import React, { Component } from 'react'
-import { LANDING_PAGE_PATH, indentToToken } from '@/constants'
+import { LANDING_PAGE_PATH, recieveUserInfo } from '@/constants'
 import { NavLink } from 'react-router-dom'
 import { PropTypes } from 'prop-types'
+import { saveUserData, getUserData } from '@/utils/common'
 import H3 from './styles'
 
 import StandardLayout from '@/components/layouts'
 import Main from '@/components/blocks/Main'
-import { getLocalStorage, setLocalStorage } from '@/utils'
 
 class Layout extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      token: document.cookie.includes('token=id')
-        ? document.cookie.substring(
-          document.cookie.search('token=id') + indentToToken,
-          document.cookie.search('tokenend'),
-        )
-        : '',
-      userContacts: JSON.parse(getLocalStorage('contacts')) || [],
-      userInfo: JSON.parse(getLocalStorage('userData')) || {},
+      token: getUserData('token'),
+      userContacts: getUserData('contacts') || [],
+      userInfo: getUserData('userData') || {},
       auth: props.isAuth,
       error: false,
     }
@@ -31,19 +26,17 @@ class Layout extends Component {
       this.state.userContacts.length === 0 &&
       !this.state.userInfo.email
     ) {
-      const firstFetch = 'https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=' + this.state.token + '&alt=json'
-
-      fetch(firstFetch)
+      fetch(recieveUserInfo(this.state.token))
         .then(response => response.json())
         .then(response => {
-          setLocalStorage('userData', JSON.stringify(response))
+          saveUserData('userData', JSON.stringify(response))
           this.setState({ userInfo: response })
         })
         .then(() => {
           if (this.state.userInfo.email) {
-            const secondFetch = 'https://www.google.com/m8/feeds/contacts/' + this.state.userInfo.email + '/full?access_token=' + this.state.token + '&alt=json'
+            const recieveUserContacts = 'https://www.google.com/m8/feeds/contacts/' + this.state.userInfo.email + '/full?access_token=' + this.state.token + '&alt=json'
 
-            return fetch(secondFetch, {
+            return fetch(recieveUserContacts, {
               method: 'GET',
               headers: {
                 'Content-Type': 'application/json',
@@ -56,7 +49,7 @@ class Layout extends Component {
         .then(user => {
           if (user.feed.entry) {
             this.setState({ userContacts: user.feed.entry })
-            setLocalStorage('contacts', JSON.stringify(user.feed.entry))
+            saveUserData('contacts', JSON.stringify(user.feed.entry))
           } else {
             this.setState({ userContacts: [] })
           }
@@ -88,8 +81,8 @@ class Layout extends Component {
 }
 
 Layout.propTypes = {
-  isAuth: PropTypes.bool,
-  logOut: PropTypes.func,
+  isAuth: PropTypes.bool.isRequired,
+  logOut: PropTypes.func.isRequired,
 }
 
 export default Layout

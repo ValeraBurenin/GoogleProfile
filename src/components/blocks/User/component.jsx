@@ -19,6 +19,7 @@ User.propTypes = {
 
 User.defaultProps = {
   picture: defaultLogo,
+  name: '',
 }
 
 export default User

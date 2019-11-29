@@ -13,9 +13,14 @@ const StandardLayout = ({ children, isAuth, logOut }) => (
 )
 
 StandardLayout.propTypes = {
-  children: childrenPropType,
+  children: childrenPropType.isRequired,
   isAuth: PropTypes.bool,
   logOut: PropTypes.func,
+}
+
+StandardLayout.defaultProps = {
+  isAuth: Boolean(),
+  logOut: function f () {},
 }
 
 export default StandardLayout

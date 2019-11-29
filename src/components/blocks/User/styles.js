@@ -1,24 +1,23 @@
 import styled from 'styled-components'
 
 export default styled.div`
-  background: #EDEEF0;
+  background: ${props => props.theme.colors.gray};
   padding: ${props => props.theme.padding.big};
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
 
   img {
-    height: ${props => props.theme.imgSizes.normal};
-    border: ${props => props.theme.border.standart};
+    height: 100px;
+    border: ${props => props.theme.border.thin} solid ${props => props.theme.colors.font};
     padding: ${props => props.theme.padding.big};
-    width: ${props => props.theme.imgSizes.normal};
   }
 
   h3 {
-    margin: ${props => props.theme.margin.none};
+    margin: 0;
   }
 
-  ${props => props.theme.breakPoints.tablet}; {
+  ${props => props.theme.breakPoints.tablet} {
     flex-direction: row;
 
     img {
@@ -31,7 +30,7 @@ export default styled.div`
     align-items: center;
 
     img {
-      margin-right: ${props => props.theme.margin.none};
+      margin-right: 0;
     }
   }
 `

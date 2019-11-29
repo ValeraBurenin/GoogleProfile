@@ -10,10 +10,10 @@ export default styled.div`
   button {
     padding: ${props => props.theme.padding.verySmall} ${props => props.theme.padding.big};
     background: ${props => props.theme.colors.backgroundPrimary};
-    border: 1px solid black;
-    borderRadius: 3px;
+    border: ${props => props.theme.border.thin} solid ${props => props.theme.colors.font};
+    border-radius: ${props => props.theme.border.bold};
+    margin: ${props => props.theme.margin.verySmall};
     display: inline-block;
-    margin: 5px;
     text-align: center;
     cursor: pointer;
     transition: all .2s ease;
@@ -26,6 +26,7 @@ export default styled.div`
   button:hover {
     background: ${props => props.theme.colors.fontLighten};
     color: ${props => props.theme.colors.white};
-    border: 1px solid ${props => props.theme.colors.backgroundPrimary};
+    border: ${props => props.theme.border.thin} solid
+    ${props => props.theme.colors.backgroundPrimary};
   }
 `

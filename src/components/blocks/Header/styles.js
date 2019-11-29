@@ -3,20 +3,20 @@ import styled from 'styled-components'
 export default styled.header`
   h1{
     font-size: ${props => props.theme.fontSizes.veryBig};
-    margin: ${props => props.theme.margin.none};
+    margin: 0;
     align-self: center;
   }
 
   Button{
     font-size: ${props => props.theme.fontSizes.big};
     color: ${props => props.theme.colors.font};
-    margin: ${props => props.theme.margin.none};
-    padding: ${props => props.theme.padding.none};
+    margin: 0;
+    padding: 0;
   }
 
   a{
     text-decoration: none;
-    font-weight: ${props => props.theme.fontWeights.bold};
+    font-weight: bold;
   }
 
   a:visited{

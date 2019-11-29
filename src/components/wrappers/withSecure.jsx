@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import { Route } from 'react-router-dom'
+import { getUserData } from '@/utils/common'
 import Login from '@/components/pages/Login'
 
 export default function withSecure (component) {
   return function SecureWrapper (props) {
-    const [isAuth, setAuth] = useState(Boolean(localStorage.getItem('auth')) || false)
+    const [isAuth, setAuth] = useState(Boolean(getUserData('auth') || false))
     const { ...rest } = props
     const TargetComponent = isAuth ? component : Login
 

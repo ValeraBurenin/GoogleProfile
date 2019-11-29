@@ -2,10 +2,10 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { provider, appId, key, scope } from '@/constants'
 import { Wrapper, H3 } from './styles'
-import { setCookie, setLocalStorage } from '@/utils'
 
 import StandardLayout from '@/components/layouts'
 import SocialButton from './SocialButton'
+import { saveUserData } from '@/utils/common'
 
 export default function Login (props) {
   const [auth] = useState(props.isAuth)
@@ -13,8 +13,8 @@ export default function Login (props) {
 
   const onLoginSuccess = user => {
     const { history, logOut } = props
-    setCookie(`token=id${user._token.accessToken}tokenend; max-age=7200`)
-    setLocalStorage('auth', true)
+    saveUserData(`token=${user._token.accessToken}token`)
+    saveUserData('auth', true)
     logOut(auth)
     history.push('/')
   }
@@ -49,8 +49,8 @@ export default function Login (props) {
 }
 
 Login.propTypes = {
-  history: PropTypes.object,
-  isAuth: PropTypes.bool,
+  history: PropTypes.object.isRequired,
+  isAuth: PropTypes.bool.isRequired,
   logOut: PropTypes.func,
 }
 
