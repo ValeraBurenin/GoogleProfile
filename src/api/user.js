@@ -1,30 +1,33 @@
-import { getUserToken } from '@/utils'
+import { getUserToken, getListContacts } from '@/utils'
+import { USER_INFO_URL, PARAM_JSON, USER_CONTACTS_URL, PARAM_ACCESS_TOKEN } from '@/constants'
 
-const recieveUserInfo = token => {
-  return 'https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=' + token + '&alt=json'
+const getUserInfoUrl = token => {
+  return USER_INFO_URL + token + PARAM_JSON
 }
 
 export const requestUserInfo = () => {
-  return fetch(recieveUserInfo(getUserToken()))
+  return fetch(getUserInfoUrl(getUserToken()))
     .then(response => response.json())
+    .catch(error => {
+      throw new Error(error)
+    })
 }
 
 export const requestUserContacts = value => {
-  function recieveContacts () {
-    function * getContacts () {
-      yield 'https://www.google.com/m8/feeds/contacts/'
-      yield value
-      yield '/full?access_token='
-      yield getUserToken() + '&alt=json'
-    }
-    const numberGenerator = getContacts()
-    let result = ''
-    for (const itterator of numberGenerator) {
-      result += itterator
-    }
-    return result
+  function getUserContactsUrl () {
+    return USER_CONTACTS_URL + value + PARAM_ACCESS_TOKEN + getUserToken() + PARAM_JSON
   }
 
-  return fetch(recieveContacts())
+  return fetch(getUserContactsUrl())
     .then(response => response.json())
+    .then(response => {
+      if (response.feed.entry) {
+        return getListContacts(response.feed.entry)
+      } else {
+        return []
+      }
+    })
+    .catch(error => {
+      throw new Error(error)
+    })
 }

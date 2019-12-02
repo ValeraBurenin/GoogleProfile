@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom'
 import { PropTypes } from 'prop-types'
 import { getUserInfo, getUserContacts, getUserToken, saveUserInfo, saveUserContacts } from '@/utils'
 import { requestUserInfo, requestUserContacts } from '@/api/user'
+import * as waterfall from 'promise-waterfall'
 import H3 from './styles'
 
 import StandardLayout from '@/components/layouts'
@@ -21,58 +22,34 @@ class Layout extends Component {
     }
   }
 
-  componentDidMount () {
-    if (
-      this.state.auth &&
-      this.state.userContacts.length === 0 &&
-      !this.state.userInfo.email
-    ) {
-      (async () => {
-        try {
-          const userInfo = await requestUserInfo()
-          saveUserInfo(userInfo)
-          this.setState({ userInfo: userInfo })
+  UserInfoToState = response => {
+    this.setState({ userInfo: response })
+    saveUserInfo(response)
+  }
 
-          const userContacts = await requestUserContacts(this.state.userInfo.email)
+  getUserContacts = () => {
+    return requestUserContacts(this.state.userInfo.email)
+  }
 
-          if (userContacts.feed.entry) {
-            this.setState({ userContacts: userContacts.feed.entry })
-            saveUserContacts(userContacts.feed.entry)
-          } else {
-            this.setState({ userContacts: [] })
-          }
-        } catch (error) {
-          this.setState({ error: true })
-        }
-      })()
+  UserContactsToState = user => {
+    if (user) {
+      this.setState({ userContacts: user })
+      saveUserContacts(user)
+    } else {
+      this.setState({ userContacts: [] })
     }
+  }
 
-    // if (
-    //   true
-    //   // this.state.auth &&
-    //   // this.state.userContacts.length === 0 &&
-    //   // !this.state.userInfo.email
-    // ) {
-    //   requestUserInfo()
-    //     .then(response => {
-    //       saveUserInfo(response)
-    //       this.setState({ userInfo: response })
-    //     })
-    //     .then(() => {
-    //       return requestUserContacts(this.state.userInfo.email)
-    //     })
-    //     .then(user => {
-    //       if (user.feed.entry) {
-    //         this.setState({ userContacts: user.feed.entry })
-    //         // saveUserContacts(user.feed.entry)
-    //       } else {
-    //         this.setState({ userContacts: [] })
-    //       }
-    //     })
-    //     .catch(() => {
-    //       this.setState({ error: false })
-    //     })
-    // }
+  componentDidMount () {
+    waterfall([
+      requestUserInfo,
+      this.UserInfoToState,
+      this.getUserContacts,
+      this.UserContactsToState,
+    ])
+      .catch(() => {
+        this.setState({ error: true })
+      })
   }
 
   render () {

@@ -1,5 +1,13 @@
 import { cleanLocalStorage, setLocalStorage } from '@/utils'
 
+export const getListContacts = array => {
+  const contactsData = array.map(({ id, title, gd$phoneNumber }) => (
+    { id: id.$t, title: title.$t, phone: gd$phoneNumber[0].$t }
+  ))
+
+  return contactsData
+}
+
 export const cleanAllData = () => {
   cleanLocalStorage()
   document.cookie = 'token=; path=/; expires=-1'
@@ -20,9 +28,12 @@ export const saveUserContacts = value => {
 }
 
 export const getUserContacts = () => {
-  const storage = JSON.parse(localStorage.getItem('contacts'))
-
-  return storage || []
+  try {
+    const storage = JSON.parse(localStorage.getItem('contacts'))
+    return storage || []
+  } catch {
+    return new Error("error in obtaining user's information")
+  }
 }
 
 export const saveUserInfo = value => {
@@ -30,7 +41,10 @@ export const saveUserInfo = value => {
 }
 
 export const getUserInfo = () => {
-  const storage = JSON.parse(localStorage.getItem('userData'))
-
-  return storage || {}
+  try {
+    const storage = JSON.parse(localStorage.getItem('userData'))
+    return storage || {}
+  } catch {
+    return new Error("error in obtaining user's contacts")
+  }
 }
