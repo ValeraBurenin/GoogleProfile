@@ -3,5 +3,5 @@ export const getList = array => {
     { id: id.$t, title: title.$t, phone: gd$phoneNumber[0].$t }
   ))
 
-  return Array.from(contactsData)
+  return contactsData
 }

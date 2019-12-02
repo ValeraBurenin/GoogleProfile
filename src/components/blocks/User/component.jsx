@@ -1,7 +1,7 @@
 import React from 'react'
 import { PropTypes } from 'prop-types'
 import Wrapper from './styles'
-import { defaultLogo } from '@/constants'
+import { DEFAULT_LOGO } from '@/constants'
 
 const User = ({ picture, name }) => (
   <Wrapper>
@@ -18,7 +18,7 @@ User.propTypes = {
 }
 
 User.defaultProps = {
-  picture: defaultLogo,
+  picture: DEFAULT_LOGO,
   name: '',
 }
 

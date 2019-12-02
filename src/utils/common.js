@@ -1,18 +1,36 @@
-import { cleanLocalStorage, setCookie, getCookie, setLocalStorage, getLocalStorage } from '@/utils'
+import { cleanLocalStorage, setLocalStorage } from '@/utils'
 
 export const cleanAllData = () => {
   cleanLocalStorage()
-  setCookie('token=; path=/; expires=-1')
+  document.cookie = 'token=; path=/; expires=-1'
 }
 
-export const saveUserData = (value, key) => {
-  key ? setLocalStorage(value, key) : setCookie(value)
+export const setUserAuthenticated = value => {
+  return localStorage.setItem('auth', value)
 }
 
-export const getUserData = value => {
-  const result = document.cookie.includes(value)
-    ? getCookie(value)
-    : getLocalStorage(value)
+export const getUserAuthenticated = () => {
+  const auth = Boolean(localStorage.getItem('auth'))
 
-  return result
+  return auth
+}
+
+export const saveUserContacts = value => {
+  setLocalStorage('contacts', JSON.stringify(value))
+}
+
+export const getUserContacts = () => {
+  const storage = JSON.parse(localStorage.getItem('contacts'))
+
+  return storage || []
+}
+
+export const saveUserInfo = value => {
+  setLocalStorage('userData', JSON.stringify(value))
+}
+
+export const getUserInfo = () => {
+  const storage = JSON.parse(localStorage.getItem('userData'))
+
+  return storage || {}
 }

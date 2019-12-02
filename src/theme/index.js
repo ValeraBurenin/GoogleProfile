@@ -10,14 +10,7 @@ export default {
     background: '#ffffff',
     backgroundPrimary: '#eacc86',
     backgroundDark: '#f9f9f9',
-    primary: '#fe2419',
-    primaryDark: '#d4251c',
-    secondary: '#26499d',
-    secondaryLight: 'rgba(38, 73, 157, 0.73)',
-    white: '#fff',
-    gray: '#EDEEF0',
     font: '#000',
-    fontLighten: '#474747',
   },
   fontSizes: {
     werySmall: '12px',
@@ -36,7 +29,6 @@ export default {
     twenty: '20%',
   },
   padding: {
-    none: 0,
     verySmall: '10px',
     small: '14px',
     normal: '16px',
@@ -44,7 +36,6 @@ export default {
     veryBig: '24px',
   },
   margin: {
-    none: 0,
     verySmall: '10px',
     small: '14px',
     normal: '16px',

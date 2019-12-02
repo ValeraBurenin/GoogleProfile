@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom'
 import { LANDING_PAGE_PATH } from '@/constants'
 import { PropTypes } from 'prop-types'
 import Wrapper from './styles'
-import { cleanAllData } from '@/utils'
+import { cleanAllData, checkAvaliableToken } from '@/utils'
 
 const Header = ({ isAuth, logOut }) => {
   const handleExit = () => {
@@ -11,9 +11,7 @@ const Header = ({ isAuth, logOut }) => {
     logOut(true)
   }
 
-  useEffect(() => {
-    !document.cookie.includes('token') && cleanAllData()
-  })
+  useEffect(() => { checkAvaliableToken() })
 
   return (
     <Wrapper>

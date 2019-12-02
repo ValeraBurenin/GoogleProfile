@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export default styled.div`
-  background: ${props => props.theme.colors.gray};
+  background: ${props => props.theme.colors.backgroundDark};
   padding: ${props => props.theme.padding.big};
   display: flex;
   flex-direction: column;

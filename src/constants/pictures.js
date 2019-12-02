@@ -1,3 +1,3 @@
 import standardLogo from '@/assets/img/defaultLogo.gif'
 
-export const defaultLogo = standardLogo
+export const DEFAULT_LOGO = standardLogo

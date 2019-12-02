@@ -19,7 +19,7 @@ StandardLayout.propTypes = {
 }
 
 StandardLayout.defaultProps = {
-  isAuth: Boolean(),
+  isAuth: false,
   logOut: function f () {},
 }
 

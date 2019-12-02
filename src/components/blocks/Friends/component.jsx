@@ -11,8 +11,8 @@ const Friends = ({ contacts }) => (
         <>
           <h3>Your contacts</h3>
           <ul>
-            {getList(contacts).map(friend => (
-              <li key={friend.id}>{friend.title} <p>{friend.phone}</p></li>
+            {getList(contacts).map(({ id, title, phone }) => (
+              <li key={id}>{title} <p>{phone}</p></li>
             ))}
           </ul>
         </>
@@ -21,7 +21,17 @@ const Friends = ({ contacts }) => (
 )
 
 Friends.propTypes = {
-  contacts: PropTypes.arrayOf(PropTypes.object),
+  contacts: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.shape({
+      $t: PropTypes.string.isRequired,
+    }),
+    title: PropTypes.shape({
+      $t: PropTypes.string.isRequired,
+    }),
+    gd$phoneNumber: PropTypes.arrayOf(PropTypes.shape({
+      $t: PropTypes.string.isRequired,
+    })),
+  })),
 }
 
 export default Friends

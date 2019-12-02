@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { LANDING_PAGE_PATH, recieveUserInfo } from '@/constants'
+import { LANDING_PAGE_PATH } from '@/constants'
 import { NavLink } from 'react-router-dom'
 import { PropTypes } from 'prop-types'
-import { saveUserData, getUserData } from '@/utils/common'
+import { getUserInfo, getUserContacts, getUserToken, saveUserInfo, saveUserContacts } from '@/utils'
+import { requestUserInfo, requestUserContacts } from '@/api/user'
 import H3 from './styles'
 
 import StandardLayout from '@/components/layouts'
@@ -12,9 +13,9 @@ class Layout extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      token: getUserData('token'),
-      userContacts: getUserData('contacts') || [],
-      userInfo: getUserData('userData') || {},
+      token: getUserToken(),
+      userContacts: getUserContacts(),
+      userInfo: getUserInfo(),
       auth: props.isAuth,
       error: false,
     }
@@ -26,38 +27,52 @@ class Layout extends Component {
       this.state.userContacts.length === 0 &&
       !this.state.userInfo.email
     ) {
-      fetch(recieveUserInfo(this.state.token))
-        .then(response => response.json())
-        .then(response => {
-          saveUserData('userData', JSON.stringify(response))
-          this.setState({ userInfo: response })
-        })
-        .then(() => {
-          if (this.state.userInfo.email) {
-            const recieveUserContacts = 'https://www.google.com/m8/feeds/contacts/' + this.state.userInfo.email + '/full?access_token=' + this.state.token + '&alt=json'
+      (async () => {
+        try {
+          const userInfo = await requestUserInfo()
+          saveUserInfo(userInfo)
+          this.setState({ userInfo: userInfo })
 
-            return fetch(recieveUserContacts, {
-              method: 'GET',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-            })
-          }
-        },
-        )
-        .then(user => user.json())
-        .then(user => {
-          if (user.feed.entry) {
-            this.setState({ userContacts: user.feed.entry })
-            saveUserData('contacts', JSON.stringify(user.feed.entry))
+          const userContacts = await requestUserContacts(this.state.userInfo.email)
+
+          if (userContacts.feed.entry) {
+            this.setState({ userContacts: userContacts.feed.entry })
+            saveUserContacts(userContacts.feed.entry)
           } else {
             this.setState({ userContacts: [] })
           }
-        })
-        .catch(() => {
+        } catch (error) {
           this.setState({ error: true })
-        })
+        }
+      })()
     }
+
+    // if (
+    //   true
+    //   // this.state.auth &&
+    //   // this.state.userContacts.length === 0 &&
+    //   // !this.state.userInfo.email
+    // ) {
+    //   requestUserInfo()
+    //     .then(response => {
+    //       saveUserInfo(response)
+    //       this.setState({ userInfo: response })
+    //     })
+    //     .then(() => {
+    //       return requestUserContacts(this.state.userInfo.email)
+    //     })
+    //     .then(user => {
+    //       if (user.feed.entry) {
+    //         this.setState({ userContacts: user.feed.entry })
+    //         // saveUserContacts(user.feed.entry)
+    //       } else {
+    //         this.setState({ userContacts: [] })
+    //       }
+    //     })
+    //     .catch(() => {
+    //       this.setState({ error: false })
+    //     })
+    // }
   }
 
   render () {
