@@ -13,8 +13,8 @@ const User = ({ picture, name }) => (
 )
 
 User.propTypes = {
-  picture: PropTypes.string,
-  name: PropTypes.string,
+  picture: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
 }
 
 User.defaultProps = {

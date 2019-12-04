@@ -1,23 +1,30 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Route } from 'react-router-dom'
-import { getUserAuthenticated } from '@/utils/common'
+import { PropTypes } from 'prop-types'
+import { connect } from 'react-redux'
+
 import Login from '@/components/pages/Login'
 
 export default function withSecure (component) {
-  return function SecureWrapper (props) {
-    const [isAuth, setAuth] = useState(getUserAuthenticated())
-    const { ...rest } = props
+  function SecureWrapper ({ isAuth }) {
     const TargetComponent = isAuth ? component : Login
 
-    const logOut = value => {
-      setAuth(!value)
-    }
-
     return (
-      <Route component={() => <TargetComponent
-        isAuth={isAuth}
-        logOut={logOut}
-        {...rest} />} />
+      <Route component={() => <TargetComponent />} />
     )
   }
+
+  const mapStateToProps = state => {
+    return {
+      isAuth: state.userData.isAuth,
+    }
+  }
+
+  const LandingContainer = connect(mapStateToProps)(SecureWrapper)
+
+  SecureWrapper.propTypes = {
+    isAuth: PropTypes.bool.isRequired,
+  }
+
+  return LandingContainer
 }

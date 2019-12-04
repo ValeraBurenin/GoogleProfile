@@ -1,12 +1,11 @@
 import React from 'react'
 import Header from '@/components/blocks/Header'
 import Footer from '@/components/blocks/Footer'
-import { PropTypes } from 'prop-types'
 import { childrenPropType } from '@/prop-types'
 
-const StandardLayout = ({ children, isAuth, logOut }) => (
+const StandardLayout = ({ children }) => (
   <>
-    <Header isAuth={isAuth} logOut={logOut} />
+    <Header />
     <main>{children}</main>
     <Footer />
   </>
@@ -14,13 +13,6 @@ const StandardLayout = ({ children, isAuth, logOut }) => (
 
 StandardLayout.propTypes = {
   children: childrenPropType.isRequired,
-  isAuth: PropTypes.bool,
-  logOut: PropTypes.func,
-}
-
-StandardLayout.defaultProps = {
-  isAuth: false,
-  logOut: function f () {},
 }
 
 export default StandardLayout

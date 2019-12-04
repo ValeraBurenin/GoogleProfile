@@ -1,6 +1,6 @@
 import React from 'react'
 import { PropTypes } from 'prop-types'
-import { contactsPropType } from '@/prop-types'
+import { contactsPropType, userInfoPropType } from '@/prop-types'
 
 import User from '../User'
 import Friends from '../Friends'
@@ -13,11 +13,8 @@ const Main = ({ contacts, userInfo: { name, picture } }) => (
 )
 
 Main.propTypes = {
-  contacts: contactsPropType,
-  userInfo: PropTypes.shape({
-    name: PropTypes.string,
-    picture: PropTypes.string,
-  }),
+  contacts: PropTypes.arrayOf(contactsPropType),
+  userInfo: userInfoPropType,
 }
 
 Main.defaultProps = {

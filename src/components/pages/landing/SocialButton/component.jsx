@@ -24,4 +24,9 @@ Button.propTypes = {
   triggerLogout: PropTypes.func,
 }
 
+Button.defaultProps = {
+  triggerLogin: function f () {},
+  triggerLogout: function f () {},
+}
+
 export default SocialLogin(Button)

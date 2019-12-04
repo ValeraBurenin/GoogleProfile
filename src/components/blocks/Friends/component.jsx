@@ -1,4 +1,5 @@
 import React from 'react'
+import { PropTypes } from 'prop-types'
 import { contactsPropType } from '@/prop-types'
 import Wrapper from './styles'
 
@@ -20,7 +21,7 @@ const Friends = ({ contacts }) => (
 )
 
 Friends.propTypes = {
-  contacts: contactsPropType,
+  contacts: PropTypes.arrayOf(contactsPropType),
 }
 
 export default Friends

@@ -20,7 +20,7 @@ export const setUserAuthenticated = value => {
 export const getUserAuthenticated = () => {
   const auth = Boolean(localStorage.getItem('auth'))
 
-  return auth
+  return auth || false
 }
 
 export const saveUserContacts = value => {
@@ -31,8 +31,8 @@ export const getUserContacts = () => {
   try {
     const storage = JSON.parse(localStorage.getItem('contacts'))
     return storage || []
-  } catch {
-    return new Error("error in obtaining user's information")
+  } catch (error) {
+    return new Error(error)
   }
 }
 
@@ -44,7 +44,7 @@ export const getUserInfo = () => {
   try {
     const storage = JSON.parse(localStorage.getItem('userData'))
     return storage || {}
-  } catch {
-    return new Error("error in obtaining user's contacts")
+  } catch (error) {
+    return new Error(error)
   }
 }

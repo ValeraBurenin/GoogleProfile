@@ -1,33 +1,24 @@
-import { getUserToken, getListContacts } from '@/utils'
-import { USER_INFO_URL, PARAM_JSON, USER_CONTACTS_URL, PARAM_ACCESS_TOKEN } from '@/constants'
-
-const getUserInfoUrl = token => {
-  return USER_INFO_URL + token + PARAM_JSON
-}
+import { getListContacts, getUserToken } from '@/utils'
+import { USER_INFO_API, USER_CONTACTS_API } from '@/constants'
 
 export const requestUserInfo = () => {
-  return fetch(getUserInfoUrl(getUserToken()))
+  return fetch(`${USER_INFO_API}${getUserToken()}`)
     .then(response => response.json())
-    .catch(error => {
-      throw new Error(error)
-    })
+    .catch(() => {
+      throw new Error("An error occurred while processing the user's data.")
+    },
+    )
 }
 
-export const requestUserContacts = value => {
-  function getUserContactsUrl () {
-    return USER_CONTACTS_URL + value + PARAM_ACCESS_TOKEN + getUserToken() + PARAM_JSON
-  }
-
-  return fetch(getUserContactsUrl())
+export const requestUserContacts = () => {
+  return fetch(`${USER_CONTACTS_API}${getUserToken()}`)
     .then(response => response.json())
+    .then(response => response.feed.entry ? getListContacts(response.feed.entry) : [],
+    )
     .then(response => {
-      if (response.feed.entry) {
-        return getListContacts(response.feed.entry)
-      } else {
-        return []
-      }
+      return response
     })
-    .catch(error => {
-      throw new Error(error)
+    .catch(() => {
+      throw new Error("An error occurred while processing the user's contacts.")
     })
 }

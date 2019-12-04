@@ -1,0 +1,4 @@
+export const SET_REQUEST_ERROR = 'SET_REQUEST_ERROR'
+export const SET_AUTH = 'SET_AUTH'
+export const SET_USER_INFO = 'SET_USER_INFO'
+export const SET_USER_CONTACTS = 'SET_USER_CONTACTS'

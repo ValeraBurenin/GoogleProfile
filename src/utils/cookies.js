@@ -16,3 +16,5 @@ export const getUserToken = () => {
 
   return cookie
 }
+
+export const token = getUserToken()
