@@ -1,6 +1,10 @@
 import { cleanLocalStorage, setLocalStorage } from '@/utils'
 
 export const getListContacts = array => {
+  if (array === undefined) {
+    return []
+  }
+
   const contactsData = array.map(({ id, title, gd$phoneNumber }) => (
     { id: id.$t, title: title.$t, phone: gd$phoneNumber[0].$t }
   ))
@@ -11,10 +15,6 @@ export const getListContacts = array => {
 export const cleanAllData = () => {
   cleanLocalStorage()
   document.cookie = 'token=; path=/; expires=-1'
-}
-
-export const setUserAuthenticated = value => {
-  return localStorage.setItem('auth', value)
 }
 
 export const getUserAuthenticated = () => {

@@ -1,13 +1,9 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
-import { NavLink } from 'react-router-dom'
-import { getUserData } from '@/thunk/'
+// import { getUserData } from '@/thunk'
+import { getUserData } from '@/actions'
 import { PropTypes } from 'prop-types'
 import { statePropType } from '@/prop-types'
-import { LANDING_PAGE_PATH } from '@/constants'
-import H3 from './styles'
-
-import StandardLayout from '@/components/layouts'
 import Layout from '@/components/pages/landing/component'
 
 const LayoutWrapper = ({
@@ -28,22 +24,12 @@ const LayoutWrapper = ({
       getUserData()
     }
   })
-
-  return isAuth && !error ? (
-    <StandardLayout>
-      <Layout
-        userContacts={userContacts}
-        userInfo={userInfo} />
-    </StandardLayout>
-  )
-    : (
-      <StandardLayout>
-        <H3>
-          {errorText}{' '}
-          <NavLink to={LANDING_PAGE_PATH}>Update page?</NavLink>
-        </H3>
-      </StandardLayout>
-    )
+  return <Layout
+    userContacts={userContacts}
+    userInfo={userInfo}
+    isAuth={isAuth}
+    error={error}
+    errorText={errorText} />
 }
 
 const mapStateToProps = state => {

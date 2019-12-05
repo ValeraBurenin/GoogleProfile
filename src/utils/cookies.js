@@ -5,7 +5,7 @@ export const checkAvaliableToken = () => {
 }
 
 export const saveUserToken = token => {
-  const result = document.cookie = `token=${token._token.accessToken}token; max-age=7200`
+  const result = document.cookie = `token=${token.payload._token.accessToken}token; max-age=7200`
 
   return result
 }

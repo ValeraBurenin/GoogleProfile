@@ -20,11 +20,9 @@ export default function withSecure (component) {
     }
   }
 
-  const LandingContainer = connect(mapStateToProps)(SecureWrapper)
-
   SecureWrapper.propTypes = {
     isAuth: PropTypes.bool.isRequired,
   }
 
-  return LandingContainer
+  return connect(mapStateToProps)(SecureWrapper)
 }

@@ -2,18 +2,15 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { PROVIDER, APP_ID, KEY, SCOPE } from '@/constants'
 import { Wrapper, H3 } from './styles'
-import { setUserAuthenticated, saveUserToken } from '@/utils'
 
 import StandardLayout from '@/components/layouts'
 import SocialButton from './SocialButton'
 
-function Login ({ isAuth, onSetAuthorization }) {
+function Login ({ isAuth, onSetUserAuthenticated }) {
   const [error, setError] = useState('')
 
   const onLoginSuccess = token => {
-    onSetAuthorization(true)
-    saveUserToken(token)
-    setUserAuthenticated(true)
+    onSetUserAuthenticated(token)
   }
 
   const onLoginFailure = () => {
@@ -47,7 +44,7 @@ function Login ({ isAuth, onSetAuthorization }) {
 
 Login.propTypes = {
   isAuth: PropTypes.bool.isRequired,
-  onSetAuthorization: PropTypes.func.isRequired,
+  onSetUserAuthenticated: PropTypes.func.isRequired,
 }
 
 export default Login

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { setAuthorization } from '@/actions'
+import { setUserAuthenticated } from '@/actions'
 
 import Login from './component'
 
@@ -10,7 +10,9 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => ({
-  onSetAuthorization: isAuth => dispatch(setAuthorization(isAuth)),
+  onSetUserAuthenticated: token => {
+    dispatch(setUserAuthenticated(token))
+  },
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login)
