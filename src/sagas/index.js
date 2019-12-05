@@ -2,7 +2,7 @@ import { call, put, takeEvery } from 'redux-saga/effects'
 import { GET_USER_DATA, SET_USER_AUTHENTICATED, CHECK_AVALIABLE_TOKEN } from '@/constants'
 import { requestUserInfo, requestUserContacts } from '@/api/user'
 import { pushError, userInfoToStore, userContactsToStore, setAuthorization } from '@/actions'
-import { saveUserToken, cleanAllData } from '@/utils'
+import { saveUserToken, cleanAllData, isToken } from '@/utils'
 
 function * getUserData () {
   try {
@@ -21,7 +21,7 @@ function * setUserAuthenticated (token) {
 }
 
 function * checkAvaliableToken () {
-  yield document.cookie.match(/(token)(.+)\1/) ? put(setAuthorization(true)) : cleanAllData()
+  yield isToken() ? put(setAuthorization(true)) : cleanAllData()
 }
 
 function * rootSaga () {

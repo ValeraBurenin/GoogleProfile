@@ -1,3 +1,5 @@
+export const isToken = () => (document.cookie.match(/(token)(.+)\1/))
+
 export const saveUserToken = token => {
   const result = document.cookie = `token=${token.payload._token.accessToken}token; max-age=7200`
 
