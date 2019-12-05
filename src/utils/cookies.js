@@ -1,9 +1,3 @@
-import { cleanAllData } from '@/utils'
-
-export const checkAvaliableToken = () => {
-  !document.cookie.includes('token') && cleanAllData()
-}
-
 export const saveUserToken = token => {
   const result = document.cookie = `token=${token.payload._token.accessToken}token; max-age=7200`
 

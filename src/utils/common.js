@@ -1,10 +1,6 @@
 import { cleanLocalStorage, setLocalStorage } from '@/utils'
 
-export const getListContacts = array => {
-  if (array === undefined) {
-    return []
-  }
-
+export const getListContacts = (array = []) => {
   const contactsData = array.map(({ id, title, gd$phoneNumber }) => (
     { id: id.$t, title: title.$t, phone: gd$phoneNumber[0].$t }
   ))

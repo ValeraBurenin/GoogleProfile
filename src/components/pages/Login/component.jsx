@@ -4,7 +4,7 @@ import { PROVIDER, APP_ID, KEY, SCOPE } from '@/constants'
 import { Wrapper, H3 } from './styles'
 
 import StandardLayout from '@/components/layouts'
-import SocialButton from './SocialButton'
+import SocialButton from '@/components/blocks/SocialButton'
 
 function Login ({ isAuth, onSetUserAuthenticated }) {
   const [error, setError] = useState('')
