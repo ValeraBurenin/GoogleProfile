@@ -1,4 +1,5 @@
 export * from './paths'
 export * from './socialButton'
-export * from './user'
-export * from './layout'
+export * from './pictures'
+export * from './url'
+export * from './actionTypes'

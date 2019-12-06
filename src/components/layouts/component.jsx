@@ -1,20 +1,18 @@
 import React from 'react'
-import Header from '@/components/blocks/global/Header'
-import Footer from '@/components/blocks/global/Footer'
-import { childrenPropType, boolPropType, funcPropType } from '@/prop-types'
+import Header from '@/components/blocks/Header'
+import Footer from '@/components/blocks/Footer'
+import { childrenPropType } from '@/prop-types'
 
-const StandardLayout = ({ children, isAuth, changeAuth }) => (
+const StandardLayout = ({ children }) => (
   <>
-    <Header isAuth={isAuth} changeAuth={changeAuth} />
+    <Header />
     <main>{children}</main>
     <Footer />
   </>
 )
 
 StandardLayout.propTypes = {
-  children: childrenPropType,
-  isAuth: boolPropType,
-  changeAuth: funcPropType,
+  children: childrenPropType.isRequired,
 }
 
 export default StandardLayout

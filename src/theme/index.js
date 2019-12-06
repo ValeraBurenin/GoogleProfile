@@ -10,13 +10,7 @@ export default {
     background: '#ffffff',
     backgroundPrimary: '#eacc86',
     backgroundDark: '#f9f9f9',
-    primary: '#fe2419',
-    primaryDark: '#d4251c',
-    secondary: '#26499d',
-    secondaryLight: 'rgba(38, 73, 157, 0.73)',
-    white: '#fff',
     font: '#000',
-    fontLighten: '#474747',
   },
   fontSizes: {
     werySmall: '12px',
@@ -25,8 +19,23 @@ export default {
     big: '20px',
     veryBig: '24px',
   },
+  border: {
+    thin: '1px',
+    normal: '2px',
+    bold: '3px',
+  },
+  width: {
+    fifty: '50%',
+    twenty: '20%',
+  },
   padding: {
-    none: 0,
+    verySmall: '10px',
+    small: '14px',
+    normal: '16px',
+    big: '20px',
+    veryBig: '24px',
+  },
+  margin: {
     verySmall: '10px',
     small: '14px',
     normal: '16px',
@@ -41,6 +50,10 @@ export default {
     light: 300,
     normal: 400,
     bold: 700,
+  },
+  breakPoints: {
+    tablet: '@media (max-width: 640px)',
+    mobile: '@media (max-width: 320px)',
   },
   fontFamily: ['Lato, "Helvetica Neue", Arial'],
 }

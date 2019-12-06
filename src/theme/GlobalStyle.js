@@ -46,7 +46,7 @@ export default createGlobalStyle`
     padding: 0;
   }
 
-  @media (max-width: 640px){
+  ${props => props.theme.breakPoints.tablet}{
     main {
       flex-direction: column;
     }

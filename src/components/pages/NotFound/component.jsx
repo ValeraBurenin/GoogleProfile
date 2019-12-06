@@ -5,6 +5,6 @@ import NotFound from './styles'
 
 export default () => (
   <NotFound>
-    Страница не найдена. Вернуться на <Link to={LANDING_PAGE_PATH}>главную</Link>?
+    Page not found. Back to <Link to={LANDING_PAGE_PATH}>home</Link>?
   </NotFound>
 )
