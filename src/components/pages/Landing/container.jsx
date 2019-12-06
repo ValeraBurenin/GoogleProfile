@@ -4,7 +4,10 @@ import Landing from './component'
 
 const mapStateToProps = state => {
   return {
-    state: state.userData,
+    isAuth: state.userData.isAuth,
+    userName: state.userData.userInfo.name,
+    fetchError: state.errors.fetchError,
+    errorText: state.errors.errorText,
   }
 }
 

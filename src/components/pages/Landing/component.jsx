@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import Main from '@/components/blocks/Main'
 import { PropTypes } from 'prop-types'
-import { statePropType } from '@/prop-types'
 import { NavLink } from 'react-router-dom'
 import { LANDING_PAGE_PATH } from '@/constants'
 import H3 from './styles'
@@ -10,27 +9,22 @@ import StandardLayout from '@/components/layouts'
 
 const Landing = ({
   getUserData,
-  state: {
-    isAuth,
-    requestError: { error, errorText },
-    userInfo,
-    userContacts,
-  },
+  isAuth,
+  fetchError,
+  errorText,
+  userName,
 }) => {
   useEffect(() => {
     if (
       isAuth &&
-      userContacts.length === 0 &&
-      !userInfo.email
+      !userName
     ) {
       getUserData()
     }
   })
-  return isAuth && !error ? (
+  return userName && !fetchError ? (
     <StandardLayout>
-      <Main
-        contacts={userContacts}
-        userInfo={userInfo} />
+      <Main />
     </StandardLayout>
   )
     : (
@@ -44,12 +38,15 @@ const Landing = ({
 }
 
 Landing.propTypes = {
-  state: PropTypes.shape(statePropType),
+  isAuth: PropTypes.bool.isRequired,
+  fetchError: PropTypes.bool.isRequired,
+  errorText: PropTypes.string.isRequired,
   getUserData: PropTypes.func.isRequired,
+  userName: PropTypes.string,
 }
 
-Landing.defaultPorps = {
-  errorText: '',
+Landing.defaultProps = {
+  userName: '',
 }
 
 export default Landing

@@ -11,17 +11,12 @@ export const contactsPropType = pt.shape({
   phone: pt.string.isRequired,
 })
 
-export const userInfoPropType = pt.shape({
-  name: pt.string,
-  picture: pt.string,
+export const errorPropType = pt.shape({
+  error: pt.bool.isRequired,
+  errorText: pt.string.isRequired,
 })
 
-export const statePropType = {
-  requestError: pt.shape({
-    error: pt.bool.isRequired,
-    errorText: pt.string.isRequired,
-  }),
-  isAuth: pt.bool.isRequired,
-  userContacts: pt.arrayOf(contactsPropType),
-  userInfo: userInfoPropType,
-}
+export const userInfoPropType = pt.shape({
+  name: pt.string.isRequired,
+  picture: pt.string.isRequired,
+})

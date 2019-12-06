@@ -1,3 +1,3 @@
-import Friends from './component'
+import Friends from './container'
 
 export default Friends

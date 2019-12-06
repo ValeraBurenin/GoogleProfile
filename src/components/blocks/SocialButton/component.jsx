@@ -9,10 +9,8 @@ class Button extends Component {
     const { children, triggerLogin, triggerLogout, ...props } = this.props
 
     return (
-      <Wrapper>
-        <button onClick={triggerLogin} {...props}>
-          {children}
-        </button>
+      <Wrapper onClick={triggerLogin} {...props}>
+        {children}
       </Wrapper>
     )
   }

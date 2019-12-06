@@ -8,22 +8,22 @@ export const getListContacts = (array = []) => {
   return contactsData
 }
 
-export const cleanAllData = () => {
+export const logOut = () => {
   cleanLocalStorage()
   document.cookie = 'token=; path=/; expires=-1'
 }
 
-export const getUserAuthenticated = () => {
+export const storageAuthenticated = () => {
   const auth = Boolean(localStorage.getItem('auth'))
 
   return auth || false
 }
 
-export const saveUserContacts = value => {
+export const ContactsToStorage = value => {
   setLocalStorage('contacts', JSON.stringify(value))
 }
 
-export const getUserContacts = () => {
+export const storageContacts = () => {
   try {
     const storage = JSON.parse(localStorage.getItem('contacts'))
     return storage || []
@@ -32,11 +32,11 @@ export const getUserContacts = () => {
   }
 }
 
-export const saveUserInfo = value => {
+export const userInfoToStorage = value => {
   setLocalStorage('userData', JSON.stringify(value))
 }
 
-export const getUserInfo = () => {
+export const storageUserInfo = () => {
   try {
     const storage = JSON.parse(localStorage.getItem('userData'))
     return storage || {}

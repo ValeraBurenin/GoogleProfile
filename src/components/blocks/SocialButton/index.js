@@ -1,3 +1,3 @@
-import SocialButton from './component'
+import SocialButton from './container'
 
 export default SocialButton
