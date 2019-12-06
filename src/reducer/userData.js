@@ -1,6 +1,5 @@
 import { PUSH_ERROR, SET_AUTH, SET_USER_INFO, SET_USER_CONTACTS } from '@/constants'
 import { getUserAuthenticated } from '@/utils/common'
-import { getUserInfo, getUserContacts } from '@/utils'
 
 const initialState = {
   requestError: {
@@ -8,8 +7,6 @@ const initialState = {
     errorText: '',
   },
   isAuth: getUserAuthenticated(),
-  userContacts: getUserContacts(),
-  userInfo: getUserInfo(),
 }
 
 export default function (state = initialState, action) {

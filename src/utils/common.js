@@ -26,7 +26,7 @@ export const saveUserContacts = value => {
 export const getUserContacts = () => {
   try {
     const storage = JSON.parse(localStorage.getItem('contacts'))
-    return storage || []
+    return storage
   } catch (error) {
     return new Error(error)
   }
@@ -39,7 +39,7 @@ export const saveUserInfo = value => {
 export const getUserInfo = () => {
   try {
     const storage = JSON.parse(localStorage.getItem('userData'))
-    return storage || {}
+    return storage
   } catch (error) {
     return new Error(error)
   }

@@ -2,8 +2,8 @@ import React from 'react'
 import { PropTypes } from 'prop-types'
 import { contactsPropType, userInfoPropType } from '@/prop-types'
 
-import User from '../User'
-import Friends from '../Friends'
+import User from '@/components/blocks/User'
+import Friends from '@/components/blocks/Friends'
 
 const Main = ({ contacts, userInfo: { name, picture } }) => (
   <main>
@@ -13,15 +13,8 @@ const Main = ({ contacts, userInfo: { name, picture } }) => (
 )
 
 Main.propTypes = {
-  contacts: PropTypes.arrayOf(contactsPropType),
-  userInfo: userInfoPropType,
-}
-
-Main.defaultProps = {
-  userInfo: {
-    name: '',
-    picture: '',
-  },
+  contacts: PropTypes.arrayOf(contactsPropType).isRequired,
+  userInfo: userInfoPropType.isRequired,
 }
 
 export default Main

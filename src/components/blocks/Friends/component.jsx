@@ -21,7 +21,7 @@ const Friends = ({ contacts }) => (
 )
 
 Friends.propTypes = {
-  contacts: PropTypes.arrayOf(contactsPropType),
+  contacts: PropTypes.arrayOf(contactsPropType).isRequired,
 }
 
 export default Friends
