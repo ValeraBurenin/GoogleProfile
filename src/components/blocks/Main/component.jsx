@@ -6,10 +6,10 @@ import User from '../User'
 import Friends from '../Friends'
 
 const Main = ({ contacts, userInfo: { name, picture } }) => (
-  <main>
+  <>
     <User name={name} picture={picture} />
     <Friends contacts={contacts} />
-  </main>
+  </>
 )
 
 Main.propTypes = {

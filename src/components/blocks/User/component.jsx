@@ -1,11 +1,12 @@
 import React from 'react'
 import { PropTypes } from 'prop-types'
-import Wrapper from './styles'
+import { Wrapper, AntAvatar } from './styles'
 import { DEFAULT_LOGO } from '@/constants'
+// import { Avatar } from 'antd'
 
 const User = ({ picture, name }) => (
   <Wrapper>
-    <img src={picture} alt="logo" />
+    <AntAvatar className="avatar" src={picture} />
     <div>
       <h2>{name}</h2>
     </div>

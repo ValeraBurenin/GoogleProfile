@@ -5,10 +5,25 @@ export default styled.div`
   width: 100%;
   box-sizing: border-box;
 
+  .contacts {
+    p {
+      font-size: 20px;
+    }
+
+    .ant-list-item-meta-description {
+      font-size: 16px;
+    }
+
+    .ant-avatar {
+      width: 80px;
+      height: 80px;
+    }
+  }
+
   h3 {
     font-size: ${props => props.theme.fontSizes.veryBig};
     font-weight: ${props => props.theme.fontWeights.bold};
-    margin: 0;
+    margin-bottom: 10px;
     text-align: right;
   }
 
@@ -21,14 +36,5 @@ export default styled.div`
     border-bottom: ${props => props.theme.border.bold} solid ${props => props.theme.colors.font};
     padding: ${props => props.theme.padding.big};
     list-style-type: none;
-  }
-
-  p {
-    color: darkblue;
-    text-decoration: none;
-
-    &:hover {
-      opacity: .8;
-    }
   }
 `

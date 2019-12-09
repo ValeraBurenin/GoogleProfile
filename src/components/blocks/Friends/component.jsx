@@ -2,6 +2,7 @@ import React from 'react'
 import { PropTypes } from 'prop-types'
 import { contactsPropType } from '@/prop-types'
 import Wrapper from './styles'
+import { List, Avatar } from 'antd'
 
 const Friends = ({ contacts }) => (
   <Wrapper>
@@ -10,11 +11,20 @@ const Friends = ({ contacts }) => (
       : (
         <>
           <h3>Your contacts</h3>
-          <ul>
-            {contacts.map(({ id, title, phone }) => (
-              <li key={id}>{title} <p>{phone}</p></li>
-            ))}
-          </ul>
+          <List
+            className="contacts"
+            key={contacts.id}
+            itemLayout="horizontal"
+            dataSource={contacts}
+            bordered="true"
+            renderItem={item => (
+              <List.Item>
+                <List.Item.Meta
+                  avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
+                  title={<p>{item.title}</p>}
+                  description={item.phone} />
+              </List.Item>
+            )} />
         </>
       )}
   </Wrapper>

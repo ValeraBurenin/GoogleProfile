@@ -1,33 +1,20 @@
 import styled from 'styled-components'
+import { PageHeader } from 'antd'
 
-export default styled.header`
-  h1{
-    font-size: ${props => props.theme.fontSizes.veryBig};
-    margin: 0;
-    align-self: center;
+export default styled(PageHeader)`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+  .ant-page-header-heading {
+    width: inherit;
+
+    span {
+      color: ${props => props.theme.colors.font};
+    }
   }
 
-  Button{
-    font-size: ${props => props.theme.fontSizes.big};
-    color: ${props => props.theme.colors.font};
-    margin: 0;
+  .ant-page-header-content {
     padding: 0;
-  }
-
-  a{
-    text-decoration: none;
-    font-weight: bold;
-  }
-
-  a:visited{
-    color: ${props => props.theme.colors.font};
-
-  }
-  a:active{
-    color: ${props => props.theme.colors.font};
-  }
-
-  a:hover{
-    color: ${props => props.theme.colors.fontLighten};
   }
 `

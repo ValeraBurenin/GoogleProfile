@@ -8,9 +8,9 @@ export default {
   },
   colors: {
     background: '#ffffff',
-    backgroundPrimary: '#eacc86',
+    backgroundPrimary: '#40a9ff',
     backgroundDark: '#f9f9f9',
-    font: '#000',
+    font: '#fff',
   },
   fontSizes: {
     werySmall: '12px',

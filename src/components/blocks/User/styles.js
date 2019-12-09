@@ -1,36 +1,28 @@
 import styled from 'styled-components'
+import { Avatar } from 'antd'
 
-export default styled.div`
+export const AntAvatar = styled(Avatar)`
+
+  &.avatar {
+    width: 200px;
+    height: 200px;
+  }
+
   background: ${props => props.theme.colors.backgroundDark};
   padding: ${props => props.theme.padding.big};
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
+`
 
-  img {
-    height: 100px;
-    border: ${props => props.theme.border.thin} solid ${props => props.theme.colors.font};
-    padding: ${props => props.theme.padding.big};
-  }
+export const Wrapper = styled.div`
+  background: ${props => props.theme.colors.backgroundDark};
+  padding: ${props => props.theme.padding.big};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-  h3 {
-    margin: 0;
-  }
-
-  ${props => props.theme.breakPoints.tablet} {
-    flex-direction: row;
-
-    img {
-      margin-right: ${props => props.theme.margin.verySmall};
-    }
-  }
-
-  ${props => props.theme.breakPoints.mobile} {
-    flex-direction: column;
-    align-items: center;
-
-    img {
-      margin-right: 0;
-    }
+  h2 {
+    margin-top: 10px;
   }
 `

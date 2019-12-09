@@ -3,6 +3,7 @@ import Router from '@/Router'
 import { Provider } from 'react-redux'
 import ThemeProviderWrapper from '@/components/wrappers/ThemeProvider'
 import store from '@/store'
+import 'antd/dist/antd.css'
 
 export default () => (
   <Provider store={store}>
