@@ -17,7 +17,7 @@ class Button extends Component {
 }
 
 Button.propTypes = {
-  children: childrenPropType,
+  children: childrenPropType.isRequired,
   triggerLogin: PropTypes.func,
   triggerLogout: PropTypes.func,
 }

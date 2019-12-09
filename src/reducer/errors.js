@@ -12,8 +12,12 @@ const initialState = {
 
 export default function (state = initialState, action) {
   switch (action.type) {
-    case PUSH_ERROR: return {
-      ...state, requestError: action.payload,
+    case PUSH_ERROR: {
+      return {
+        ...state,
+        fetchError: action.payload.fetchError,
+        errorText: action.payload.errorText,
+      }
     }
     case ON_LOGIN_FAILURE: return {
       ...state, loginErrror: true,

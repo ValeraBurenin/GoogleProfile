@@ -14,5 +14,5 @@ export const requestUserContacts = () => {
     .then(response => response.json())
     .then(response => getListContacts(response.feed.entry))
     .catch(error => pushError(error.message ||
-    'Sorry, user contacts was not recieved. Please try later.'))
+      'Sorry, the user\'s contacts was not recieved. Please try later.'))
 }
