@@ -21,8 +21,12 @@ const LoginPage = ({ isAuth, error }) => (
 )
 
 LoginPage.propTypes = {
-  isAuth: PropTypes.bool.isRequired,
+  isAuth: PropTypes.bool,
   error: PropTypes.bool.isRequired,
+}
+
+LoginPage.defaultProps = {
+  isAuth: false,
 }
 
 export default LoginPage

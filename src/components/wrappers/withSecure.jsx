@@ -21,7 +21,11 @@ export default function withSecure (component) {
   }
 
   SecureWrapper.propTypes = {
-    isAuth: PropTypes.bool.isRequired,
+    isAuth: PropTypes.bool,
+  }
+
+  SecureWrapper.defaultProps = {
+    isAuth: false,
   }
 
   return connect(mapStateToProps)(SecureWrapper)

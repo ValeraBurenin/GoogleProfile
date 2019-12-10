@@ -5,13 +5,15 @@ import { LANDING_PAGE_PATH } from '@/constants'
 import { logOut } from '@/utils'
 import Wrapper from './styles'
 
-const Header = ({ isAuth, onSetAuthorization, validateUserToken }) => {
+const Header = ({ isAuth, onSetAuthorization, validateUserToken, validateStorage }) => {
   const handleExit = () => {
     onSetAuthorization(false)
     logOut()
   }
 
   useEffect(() => { validateUserToken() })
+  useEffect(() => { validateStorage() })
+
   return (
     <Wrapper>
       <h1>
@@ -27,9 +29,14 @@ const Header = ({ isAuth, onSetAuthorization, validateUserToken }) => {
 }
 
 Header.propTypes = {
-  isAuth: PropTypes.bool.isRequired,
   onSetAuthorization: PropTypes.func.isRequired,
   validateUserToken: PropTypes.func.isRequired,
+  validateStorage: PropTypes.func.isRequired,
+  isAuth: PropTypes.bool,
+}
+
+Header.defaultProps = {
+  isAuth: false,
 }
 
 export default Header

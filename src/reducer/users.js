@@ -1,22 +1,19 @@
-import { SET_AUTH, SET_USER_INFO, SET_USER_CONTACTS } from '@/constants'
-import { storageAuthenticated, storageUserInfo, storageContacts } from '@/utils'
+import {
+  SET_AUTH,
+  SET_USER_INFO,
+  SET_USER_CONTACTS,
+  SET_STORAGE_CONTACTS,
+  SET_STORAGE_USER_INFO,
+} from '@/constants'
 
 const initialState = {
-  isAuth: storageAuthenticated(),
-  userInfo: storageUserInfo(),
-  userContacts: storageContacts(),
 }
 
 export default function (state = initialState, action) {
   switch (action.type) {
     case SET_AUTH: {
       if (!action.payload) {
-        return {
-          ...state,
-          isAuth: action.payload,
-          userInfo: { ...state.userInfo, name: '', picture: '' },
-          userContacts: [],
-        }
+        return []
       } else {
         return {
           ...state, isAuth: action.payload,
@@ -29,6 +26,12 @@ export default function (state = initialState, action) {
       }
     }
     case SET_USER_CONTACTS: return {
+      ...state, userContacts: action.payload,
+    }
+    case SET_STORAGE_USER_INFO: return {
+      ...state, userInfo: action.payload,
+    }
+    case SET_STORAGE_CONTACTS: return {
       ...state, userContacts: action.payload,
     }
     default: return state
