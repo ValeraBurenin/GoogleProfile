@@ -2,17 +2,14 @@ import React, { useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 import { PropTypes } from 'prop-types'
 import { LANDING_PAGE_PATH } from '@/constants'
-import { logOut } from '@/utils'
 import Wrapper from './styles'
 
-const Header = ({ isAuth, onSetAuthorization, validateUserToken, validateStorage }) => {
+const Header = ({ isAuth, onLogOut, validateUserToken }) => {
   const handleExit = () => {
-    onSetAuthorization(false)
-    logOut()
+    onLogOut()
   }
 
   useEffect(() => { validateUserToken() })
-  useEffect(() => { validateStorage() })
 
   return (
     <Wrapper>
@@ -29,14 +26,9 @@ const Header = ({ isAuth, onSetAuthorization, validateUserToken, validateStorage
 }
 
 Header.propTypes = {
-  onSetAuthorization: PropTypes.func.isRequired,
+  onLogOut: PropTypes.func.isRequired,
   validateUserToken: PropTypes.func.isRequired,
-  validateStorage: PropTypes.func.isRequired,
-  isAuth: PropTypes.bool,
-}
-
-Header.defaultProps = {
-  isAuth: false,
+  isAuth: PropTypes.bool.isRequired,
 }
 
 export default Header

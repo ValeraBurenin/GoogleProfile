@@ -1,32 +1,23 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import { Login, H3 } from './styles'
+import { Login } from './styles'
+import { PROVIDER, APP_ID, KEY, SCOPE } from '@/constants'
 
 import StandardLayout from '@/components/layouts'
 import SocialButton from '@/components/blocks/SocialButton'
 
-const LoginPage = ({ isAuth, error }) => (
+const LoginPage = () => (
   <StandardLayout>
     <Login>
-      {
-        !isAuth && (
-          <SocialButton>
-              Sign in
-          </SocialButton>
-        )
-      }
-      {error && (<H3>Sorry, an error occurred on the server. Please repeat your request</H3>)}
+      <SocialButton
+        provider={PROVIDER}
+        appId={APP_ID}
+        key={KEY}
+        scope={SCOPE}
+      >
+          Sign in
+      </SocialButton>
     </Login>
   </StandardLayout>
 )
-
-LoginPage.propTypes = {
-  isAuth: PropTypes.bool,
-  error: PropTypes.bool.isRequired,
-}
-
-LoginPage.defaultProps = {
-  isAuth: false,
-}
 
 export default LoginPage

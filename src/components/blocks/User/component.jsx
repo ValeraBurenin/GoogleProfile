@@ -1,14 +1,14 @@
 import React from 'react'
 import { PropTypes } from 'prop-types'
-import Wrapper from './styles'
+import UserBlock from './styles'
 
 const User = ({ picture, name }) => (
-  <Wrapper>
+  <UserBlock>
     <img src={picture} alt="logo" />
     <div>
       <h2>{name}</h2>
     </div>
-  </Wrapper>
+  </UserBlock>
 )
 
 User.propTypes = {

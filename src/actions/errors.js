@@ -1,7 +1,9 @@
 import {
+  INIT_ERROR,
   PUSH_ERROR,
-  ON_LOGIN_FAILURE,
+  PULL_ERROR,
 } from '@/constants'
 
+export const initError = payload => ({ type: INIT_ERROR, payload })
 export const pushError = payload => ({ type: PUSH_ERROR, payload })
-export const onLoginFailure = () => ({ type: ON_LOGIN_FAILURE })
+export const pullError = () => ({ type: PULL_ERROR })

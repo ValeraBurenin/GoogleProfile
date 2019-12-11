@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Wrapper from './styles'
+import SocialButton from './styles'
 import SocialLogin from 'react-social-login'
 import PropTypes from 'prop-types'
 import { childrenPropType } from '@/prop-types'
@@ -9,9 +9,9 @@ class Button extends Component {
     const { children, triggerLogin, triggerLogout, ...props } = this.props
 
     return (
-      <Wrapper onClick={triggerLogin} {...props}>
+      <SocialButton onClick={triggerLogin} {...props}>
         {children}
-      </Wrapper>
+      </SocialButton>
     )
   }
 }

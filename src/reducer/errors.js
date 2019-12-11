@@ -1,36 +1,21 @@
 import {
   PUSH_ERROR,
-  ON_LOGIN_FAILURE,
-  SET_AUTH,
+  PULL_ERROR,
 } from '@/constants'
 
-const initialState = {
-  fetchError: false,
-  loginErrror: false,
-  errorText: '',
-}
+const initialState = [
+
+]
 
 export default function (state = initialState, action) {
   switch (action.type) {
     case PUSH_ERROR: {
-      return {
-        ...state,
-        fetchError: action.payload.fetchError,
-        errorText: action.payload.errorText,
-      }
+      const [...newState] = state
+      newState.push(action.payload)
+      return newState
     }
-    case ON_LOGIN_FAILURE: return {
-      ...state, loginErrror: true,
-    }
-    case SET_AUTH: {
-      if (!action.payload) {
-        return {
-          ...state,
-          loginErrror: false,
-        }
-      } else {
-        return state
-      }
+    case PULL_ERROR: {
+      return []
     }
     default: return state
   }

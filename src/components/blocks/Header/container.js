@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { setAuthorization, validateUserToken, validateStorage } from '@/actions'
+import { validateUserToken, logOut } from '@/actions'
 
 import Header from './component'
 
@@ -8,9 +8,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  onSetAuthorization: isAuth => dispatch(setAuthorization(isAuth)),
   validateUserToken: () => dispatch(validateUserToken()),
-  validateStorage: () => dispatch(validateStorage()),
+  onLogOut: () => dispatch(logOut()),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header)
