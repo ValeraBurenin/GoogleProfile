@@ -1,15 +1,9 @@
-import React, { useEffect } from 'react'
-import { notification, Icon } from 'antd'
+import React from 'react'
 import { connect } from 'react-redux'
-import 'antd/dist/antd.css'
+import { notification, Icon } from 'antd'
 import { pullError } from '@/actions'
 
-function ErrorsNotification ({ errors, openNotification }) {
-  useEffect(() => {
-    errors.length > 0 && openNotification(errors)
-  })
-  return null
-}
+import ErrorsNotification from './component'
 
 const mapStateToProps = state => {
   return {
@@ -20,11 +14,14 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     openNotification (errors) {
+      const { id, name } = errors[errors.push() - 1]
       notification.open({
         message: 'Oops...',
-        description: errors[errors.push() - 1],
+        duration: null,
+        description: name,
+        key: id,
         icon: <Icon type="frown" />,
-        onClose: () => dispatch(pullError()),
+        onClose: () => dispatch(pullError(id)),
       })
     },
   }

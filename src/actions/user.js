@@ -8,10 +8,10 @@ import {
   LOG_OUT,
 } from '@/constants'
 
-export const setAuthorization = payload => ({ type: SET_AUTH, payload })
+export const setAuthorization = bool => ({ type: SET_AUTH, payload: bool })
 export const logOut = () => ({ type: LOG_OUT })
-export const userInfoToStore = payload => ({ type: SET_USER_INFO, payload })
-export const contactsToStore = payload => ({ type: SET_USER_CONTACTS, payload })
-export const setUserAuthenticated = payload => ({ type: SET_USER_AUTHENTICATED, payload })
+export const setUserInfo = userInfo => ({ type: SET_USER_INFO, payload: userInfo })
+export const setUserContacts = contacts => ({ type: SET_USER_CONTACTS, payload: contacts })
+export const setUserAuthenticated = bool => ({ type: SET_USER_AUTHENTICATED, payload: bool })
 export const getUserContacts = () => ({ type: GET_USER_CONTACTS })
 export const validateUserToken = () => ({ type: VALIDATE_USER_TOKEN })

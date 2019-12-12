@@ -5,10 +5,6 @@ import { LANDING_PAGE_PATH } from '@/constants'
 import Wrapper from './styles'
 
 const Header = ({ isAuth, onLogOut, validateUserToken }) => {
-  const handleExit = () => {
-    onLogOut()
-  }
-
   useEffect(() => { validateUserToken() })
 
   return (
@@ -18,7 +14,7 @@ const Header = ({ isAuth, onLogOut, validateUserToken }) => {
       </h1>
       {
         isAuth
-          ? (<NavLink to={LANDING_PAGE_PATH} onClick={handleExit}>Exit</NavLink>)
+          ? (<NavLink to={LANDING_PAGE_PATH} onClick={onLogOut}>Exit</NavLink>)
           : (<NavLink to={LANDING_PAGE_PATH}>Sign in</NavLink>)
       }
     </Wrapper>

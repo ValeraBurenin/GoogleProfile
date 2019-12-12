@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { setUserAuthenticated, initError } from '@/actions'
+import { setUserAuthenticated, pushError } from '@/actions'
 
 import Button from './component'
 
@@ -9,7 +9,7 @@ const mapDispatchToProps = dispatch => {
       dispatch(setUserAuthenticated(token))
     },
     onLoginFailure: error => {
-      dispatch(initError(error))
+      dispatch(pushError(error.message || error))
     },
   }
 }

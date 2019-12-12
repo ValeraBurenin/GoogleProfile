@@ -3,19 +3,22 @@ import {
   PULL_ERROR,
 } from '@/constants'
 
-const initialState = [
-
-]
+const initialState = []
 
 export default function (state = initialState, action) {
   switch (action.type) {
     case PUSH_ERROR: {
-      const [...newState] = state
-      newState.push(action.payload)
-      return newState
+      return state.concat(
+        {
+          id: action.id,
+          name: action.payload,
+        },
+      )
     }
     case PULL_ERROR: {
-      return []
+      return state.filter(error => {
+        return error.id !== action.payload
+      })
     }
     default: return state
   }
