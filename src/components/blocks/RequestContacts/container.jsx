@@ -1,17 +1,16 @@
 import { connect } from 'react-redux'
-import { getUserData } from '@/actions'
+import { getUserContacts } from '@/actions'
+
 import Landing from './component'
 
-const mapStateToProps = state => {
-  return {
-    state: state.userData,
-  }
-}
+const mapStateToProps = state => ({
+  isAuth: state.userData.isAuth,
+})
 
 const mapDispatchToProps = dispatch => {
   return {
-    getUserData: () => {
-      dispatch(getUserData())
+    getUserContacts: () => {
+      dispatch(getUserContacts())
     },
   }
 }

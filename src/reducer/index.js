@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux'
 
-import userData from './userData'
+import userData from './users'
+import errors from './errors'
 
 export default combineReducers({
-  userData,
+  userData, errors,
 })

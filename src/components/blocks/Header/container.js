@@ -1,17 +1,15 @@
 import { connect } from 'react-redux'
-import { setAuthorization, checkAvaliableToken } from '@/actions'
+import { validateUserToken, logOut } from '@/actions'
 
 import Header from './component'
 
-const mapStateToProps = state => {
-  return {
-    isAuth: state.userData.isAuth,
-  }
-}
+const mapStateToProps = state => ({
+  isAuth: state.userData.isAuth,
+})
 
 const mapDispatchToProps = dispatch => ({
-  onSetAuthorization: isAuth => dispatch(setAuthorization(isAuth)),
-  onCheckAvaliableToken: () => dispatch(checkAvaliableToken()),
+  validateUserToken: () => dispatch(validateUserToken()),
+  onLogOut: () => dispatch(logOut()),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header)

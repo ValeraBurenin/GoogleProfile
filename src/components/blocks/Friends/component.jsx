@@ -24,4 +24,8 @@ Friends.propTypes = {
   contacts: PropTypes.arrayOf(contactsPropType),
 }
 
+Friends.defaultProps = {
+  contacts: [],
+}
+
 export default Friends
